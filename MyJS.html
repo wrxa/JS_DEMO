@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Bootstrap 模板</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+	<!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
+	<!-- 包括所有已编译的插件 -->
+	<script src="static/assets/vendor/jquery/jquery.min.js"></script>
+	<script src="static/assets/vendor/jquery/jquery-ui.js"></script>
+	<script src="static/assets/vendor/jquery/bootstrap.min.js')}}"></script>
+	<script src="static/assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="static/assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+	<script src="static/assets/vendor/chartist/js/chartist.min.js"></script>
+	<script src="static/assets/scripts/klorofil-common.js"></script>
+	<script src="static/assets/scripts/common.js"></script>
+	<script src="bootstrap/js/popper.min.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="static/js/GPG/GPG_Questionnaire.js"></script>
+
+	<!-- 引入 Bootstrap -->
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="bootstrap/css/custom.css" rel="stylesheet">
+
+		<!-- VENDOR CSS -->
+	<link rel="stylesheet" href="static/assets/css/jquery-ui.css">
+	<link rel="stylesheet" href="static/assets/vendor/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="static/assets/vendor/linearicons/style.css">
+	<link rel="stylesheet" href="static/assets/vendor/chartist/css/chartist-custom.css">
+	<!-- MAIN CSS -->
+	<link rel="stylesheet" href="static/assets/css/main.css">
+	<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
+	<link rel="stylesheet" href="static/assets/css/demo.css">
+	<!-- 页面样式 -->
+	<link rel="stylesheet" href="static/css/component/demo.css">
+	<link rel="stylesheet" href="static/css/component/component.css">
+
+	<!-- HTML5 Shiv 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
+	<!-- 注意： 如果通过 file://  引入 Respond.js 文件，则该文件无法起效果 -->
+	<!--[if lt IE 9]>
+         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+      <![endif]-->
+
+	
+</head>
+
+<body class="layout-fullwidth">
+	<style>
+		.panel {
+			background-color: rgba(255, 255, 0, 0.3);
+			margin: 10px 0px 10px 15px;
+		}
+		.cd-breadcrumb.triangle li.ableClick > * {
+			color: #ffffff;
+			background-color: #337ab7!important;
+			border-color: #337ab7 !important;
+		}
+	</style>
+
+	<div class="main">
+		<!-- MAIN CONTENT -->
+		<div class="main-content">
+			
+				<!-- <div class="page-title">煤气发电-需求调查表</div> -->
+	
+				<form id="GPG_questionnaire">
+					<div class="row full-width-style">				
+							
+								<div class="col-md-12">
+									<div class="col-md-3" style="position:fixed;height:100%;left:1%;">
+										<nav class="st-menu">
+											<h2 class="icon icon-lab">需求调查表</h2>
+											<ul>
+												<li>
+													<a class="left-select left-hover" href="#" id="q-1">项目信息</a>
+												</li>
+												<li>
+													<a class="left-select" href="#" id="q-2">蒸汽</a>
+												</li>
+												<li>
+													<a class="left-select" href="#" id="q-3">煤气参数</a>
+												</li>
+												<li>
+													<a class="left-select" href="#" id="q-4">元素成分</a>
+												</li>
+											</ul>
+										</nav>
+									</div>
+	
+									<div class="col-md-9" style="left:10%;">
+										<div class="module-content">
+											<div class="main clearfix">
+												<div class="col-md-12 q-1">
+													<div class="panel">
+														<div class="first-title"><i class="fa fa-building" aria-hidden="true"></i><span class="margin-left15">项目信息</span></div>
+														<div class="panel-body">
+															<div class="col-md-8">
+																<div class="input-group">
+																	<span class="input-group-addon show-primary width-size">项目名称</span>
+																	<input class="form-control" type="text" name="plan_name">
+																</div>
+															</div>
+															<div class="col-md-8 margin-top-20">
+																<div class="input-group">
+																	<span class="input-group-addon show-primary width-size">单位名称</span>
+																	<input class="form-control" type="text" readonly="true" name="company_name">
+																</div>
+															</div>
+															<div class="col-md-12 margin-top-20">
+																<div class="input-group">
+																	<span class="input-group-addon show-primary width-size1">項目所在地</span>
+																	<input class="form-control" type="text" readonly="true" name="company_location">
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+	
+												<div class="col-md-12 q-2 hide">
+													<div class="panel">
+														<div class="first-title"><i class="fa fa-steam" aria-hidden="true"></i><span class="margin-left15">蒸汽</span></div>
+														<div class="col-md-12 third-title-center"> 
+															<div class="col-md-3"> 蒸汽来源
+															</div>
+															<div class="col-md-3"> 流量（t/h） 										
+															</div>
+															<div class="col-md-3"> 压力（MPa）										
+															</div>
+															<div class="col-md-3"> 温度（℃） 										
+															</div>
+														</div> 
+							
+
+														<div class="panel-body">
+															<div class="col-md-12" style="text-align:center">
+																<div class="col-md-3">111 &nbsp;
+
+																	<i class="lnr lnr-pencil"  title="计算公式："  
+																	data-container="body" data-toggle="popover" data-placement="right" 
+																	data-content="constant.calculate">
+																	</i>													
+																											
+																</div>
+																
+																<div class="col-md-3">
+																	<div class="input-group">
+																		<input class="form-control" type="text" 
+																		id="constant.name_eng_flow" name="constant.name_eng_flow"/>
+																	</div>
+																</div>
+							
+																<div class="col-md-3">
+																	<div class="input-group">
+																		<input class="form-control" type="text" 
+																		id="constant.name_eng_pressure" name="constant.name_eng_pressure"/>
+																	</div>
+																</div>
+							
+																<div class="col-md-3">
+																	<div class="input-group">
+																		<input class="form-control" type="text" 
+																		id="constant.name_eng_temperature" name="constant.name_eng_temperature"/>
+																	</div>
+																</div>
+															</div>
+														</div>
+
+														<div class="panel-body third-title">
+															注：冬季采暖用汽约14.05t/h，冬夏季洗浴用蒸汽约4.5t/h。									
+														</div>
+													</div>
+												</div>
+	
+												<div class="col-md-12 q-3 hide">						
+													<div class="panel">
+														<!--<div class="second-title"> 煤气参数</div>-->
+														<div class="first-title"><i class="fa fa-fire" aria-hidden="true"></i><span class="margin-left15">煤气参数</span></div>
+														<div class="col-md-12 third-title-center"> 
+															<div class="col-md-3"> 项目
+															</div>
+															<div class="col-md-3"> 额定										
+															</div>
+															<div class="col-md-3"> 最大										
+															</div>
+															<div class="col-md-3"> 最小 										
+															</div>
+														</div>
+							
+
+														<div class="panel-body">
+															<div class="col-md-12" style="text-align:center">
+																<div class="col-md-3">
+																	
+																	<i class="fa fa-question-circle-o"  title="备注"  
+																	data-container="body" data-toggle="popover" data-placement="right" 
+																	data-content="无则不需要填写">
+																	</i>									
+																</div>
+																
+																<div class="col-md-3">
+																	<div class="input-group">
+																		<input class="form-control" type="text" 
+																		id="constant.name_eng" name="constant.name_eng"/>
+																	</div>
+																</div>
+							
+																<div class="col-md-3">
+																	<div class="input-group">
+																		<input class="form-control" type="text" 
+																		id="constant.name_eng_max" name="constant.name_eng_max"/>
+																	</div>
+																</div>
+							
+																<div class="col-md-3">
+																	<div class="input-group">
+																		<input class="form-control" type="text" 
+																		id="constant.name_eng_min" name="constant.name_eng_min"/>
+																	</div>
+																</div>
+															</div>
+														</div>
+														
+													</div>
+												</div>
+	
+												<div class="col-md-12 q-4 hide">						
+													<div class="panel">
+														<div class="first-title"><i class="fa fa-pie-chart" aria-hidden="true"></i><span class="margin-left15">元素成分</span></div>				
+														<div class="col-md-12 third-title-center"> 
+															<div class="col-md-3"> 组分										
+															</div>
+															<div class="col-md-3"> 高炉煤气·含量										
+															</div>
+															<div class="col-md-3"> 转炉煤气·含量										
+															</div>
+															<div class="col-md-3"> 焦炉煤气·含量										
+															</div>
+														</div>							
+														
+														<div class="panel-body">
+															<div class="col-md-12" style="text-align:center">
+																<div class="col-md-3">constant.name									
+																</div>
+																
+																<div class="col-md-3">
+																	<div class="input-group">
+																		<input class="form-control" type="text" 
+																		id="furnace_constant.name_eng" name="furnace_constant.name_eng"/>
+																	</div>
+																</div>
+							
+																<div class="col-md-3">
+																	<div class="input-group">
+																		<input class="form-control" type="text" 
+																		id="converter_constant.name_eng" name="converter_constant.name_eng"/>
+																	</div>
+																</div>
+							
+																<div class="col-md-3">
+																	<div class="input-group">
+																		<input class="form-control" type="text" 
+																		id="coke_constant.name_eng" name="coke_constant.name_eng"/>
+																	</div>
+																</div>
+															</div>
+														</div>																				
+													</div>
+												</div>												
+											</div>	
+										</div>
+									</div>
+								</div>
+							
+						
+					</div>
+				</form>
+			
+			<!-- END MAIN CONTENT -->
+		</div>
+		<!-- END MAIN -->
+	</div>
+
+</body>
+
+</html>
