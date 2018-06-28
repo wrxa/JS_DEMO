@@ -1,0 +1,308 @@
+{% extends "base.html" %}
+<!doctype html> {% block content %} {% block page_content %}
+<script src="{{ url_for('static', filename='js/coalCHP/coalRemovalAshSlag.js') }}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/questionnaire.css') }}">
+<style>
+	.panel {
+		background-color: rgba(255, 255, 255, 0.3);
+		margin: 10px 0px 10px 15px;
+	}
+	.cd-breadcrumb.triangle li.ableClick > * {
+    color: #ffffff;
+    background-color: #337ab7!important;
+    border-color: #337ab7 !important;
+}
+</style>
+<!-- MAIN -->
+<div class="main">
+	<!-- MAIN CONTENT -->
+	<div class="main-content">
+		<div class="container-fluid">
+			<!-- <div class="page-title">燃煤热电联产-除灰除渣系统</div> -->
+			</br>
+			</br>
+			</br>
+			<div class="row" style="margin-top: -23px;margin-bottom: -28px;">
+
+				<div class="col-md-12 breadcrumb-fix show">
+					<div id="breadcrumbDiv" class="col-md-10 breadcrumb-div">
+						<ol class="cd-breadcrumb triangle">
+							<li>
+								<a class="pre" href="#" data-page="10">上一页</a>
+							</li>
+							<li class="hide">
+								<a id="coalchp1"  onclick="return false;" href="{{ url_for('coalviews.coalQuestionnaire', id=session.planId) }}">需求调查表</a>
+							</li>
+							<li class="hide">
+								<a id="coalchp2" onclick="return false;" href="{{ url_for('coalviews.coalFurnace') }}">锅炉计算</a>
+							</li>
+							<li class="hide">
+								<a id="coalchp3" onclick="return false;" href="{{ url_for('coalviews.coalSteamTurbine') }}">汽轮机计算</a>
+							</li>
+							<li class="hide">
+								<a id="coalchp4" onclick="return false;" href="{{ url_for('coalviews.coalBoilerAuxiliaries') }}">锅炉辅机系统</a>
+							</li>
+							<li class="hide">
+								<a id="coalchp5" onclick="return false;" href="{{ url_for('coalviews.coalTurbineAuxiliary') }}">汽机辅机系统</a>
+							</li>
+							<li>
+								<a id="coalchp6" onclick="return false;" href="{{ url_for('coalviews.coalHandingSystem') }}">输煤系统</a>
+							</li>
+							<li>
+								<a id="coalchp7" onclick="return false;" href="{{ url_for('coalviews.coalSmokeAirSystem') }}">烟风系统</a>
+							</li>
+							<li>
+								<a id="coalchp8" onclick="return false;" href="{{ url_for('coalviews.coalDesulfurization') }}">脱硫脱硝系统</a>
+							</li>
+							<li>
+								<a id="coalchp9" onclick="return false;" href="{{ url_for('coalviews.coalChimney') }}">烟囱</a>
+							</li>
+							<li class="ableClick">
+								<a id="coalchp10" href="#">除灰除渣系统</a>
+							</li>
+							<li class="hide">
+								<a id="coalchp11" onclick="return false;" href="{{ url_for('coalviews.coalChemicalWater') }}">化学水系统</a>
+							</li>
+							<li class="hide">
+								<a id="coalchp12"  onclick="return false;" href="{{ url_for('coalviews.coalCirculatingWater') }}">循环水系统</a>
+							</li>
+							<li class="hide">
+								<a id="coalchp13" onclick="return false;" href="{{ url_for('coalviews.coalOfficialProcess') }}">公用工程</a>
+							</li>
+							<li class="hide">
+								<a id="coalchp14"  onclick="return false;" href="{{ url_for('coalviews.coalHeatSupply') }}">采暖供热</a>
+							</li>
+							<li class="hide">
+								<a id="coalchp15" onclick="return false;" href="{{ url_for('coalviews.coalEconomicIndicators') }}">主要技术经济指标</a>
+							</li>
+							<li>
+								<a id="coalchp16" onclick="return false;" href="{{ url_for('coalviews.outputImage') }}">出图</a>
+							</li>
+							<li>
+								<a id="coalchp17" href="{{ url_for('coalviews.coalEquipmentList') }}">设备参数</a>
+							</li>
+							<li class="current">
+								<a class="next" href="#">下一页</a>
+							</li>
+						</ol>
+					</div>
+					<div class="col-md-1 breadcrumb-submit">
+						<button type="button" id="submitData" class="btn btn-success">
+							<i class="fa fa-check-circle"></i> 保 存 </button>
+					</div>
+				</div>
+				</br>
+				</br>
+				</br>
+				</br>
+
+			</div>
+			<form id="coalRemovalAshSlagForm">
+				<div class="row full-width-style">
+					<div class="st-content">
+
+						<div class="st-content-inner">
+							<div class="col-md-12">
+								<div class="col-md-3" style="position:fixed;height:100%">
+									<nav class="st-menu">
+										<h2 class="icon icon-lab">除灰除渣系统</h2>
+										<ul>
+											<li>
+												<a class="left-select left-hover" href="#" id="r-1">除尘器计算</a>
+											</li>
+											<li>
+												<a class="left-select" href="#" id="r-2">除灰系统计算</a>
+											</li>
+											<!-- <li>
+												<a class="left-select" href="#" id="r-3">输灰系统耗气量计算</a>
+											</li> -->
+											<li>
+												<a class="left-select" href="#" id="r-4">除渣系统计算</a>
+											</li>
+											<!-- <li>
+												<a class="left-select" href="#" id="r-5">参考信息</a>
+											</li> -->
+										</ul>
+									</nav>
+
+								</div>
+								<div class="col-md-9" style="left:19%;">
+									<div class="module-content">
+										<div class="main clearfix">
+											<!-- 除尘器计算 -->
+											<div class="col-md-12 r-1">
+												<div class="panel">
+													<div class="first-title">
+														<i class="fa fa-map-marker" aria-hidden="true"></i>
+														<span class="margin-left15">除尘器计算&nbsp;&nbsp;&nbsp;
+																<i class="fa fa-file-image-o" title="参考信息" id="info6" style="cursor: pointer;"></i></span>
+													</div>
+													<div class="panel-body">
+														{% for constant in constants %} {% if constant.name_eng in ['a_total_ash_residue_after', 'a_fly_ash_content', 'a_dust_collector_inlet_',
+														'a_the_imported_smoke_volume', 'a_the_smoke_volume_flow', 'a_the_smoke_concentration', 'a_the_smoke_concentration_solid',
+														'a_collection_efficiency', 'a_the_smoke_concentration_chimney', 'a_dust_collector_stack', 'a_ash_under_dust_collector',
+														'a_the_imported_smoke_real_state', 'a_flue_gas_concentratio'] %}
+														<div class="row">
+															<div class="col-md-12">
+																<div class="col-md-5">{{ constant.name }}({{ constant.symbol }})</div>
+																<div class="col-md-6">
+																	<div class="input-group">
+																		<input type="text" {% if constant.default_value !='' %} value="{{ constant.default_value }}" class="form-control default-color"
+																		 {% else %} class="form-control" {% endif %} name="{{ constant.name_eng }}" {% if constant.disable=='T'
+																		 %} readonly="true" {% endif %}>
+																		<span class="input-group-addon show-unit">{{ constant.unit }}</span>
+																	</div>
+
+																</div>
+																{% if constant.calculate != "" %}
+																<div class="col-md-1">
+																	<i class="fa fa-question-circle-o" title="备注：" data-container="body" data-toggle="popover" data-placement="right" data-content="{{ constant.calculate }}"></i>
+																</div>
+																{% endif %}
+
+															</div>
+														</div>
+														<br> {% endif %} {% endfor %}
+													</div>
+												</div>
+											</div>
+
+											<!-- 除灰系统计算-低压力气力输送 -->
+											<div class="col-md-12 r-2 hide">
+												<div class="panel">
+													<div class="first-title">
+														<i class="fa fa-map-marker" aria-hidden="true"></i>
+														<span class="margin-left15">除灰系统计算-低压力气力输送</span>
+													</div>
+													<div class="panel-body">
+														{% for constant in constants %} {% if constant.name_eng in ['r_removal_coefficient', 'r_removal_the_ash_system', 'r_dry_ash_accumulation_density',
+														'r_slag_accumulation_coefficient', 'r_stored_ash', 'r_effective_volume_ash_storage', 'r_dia', 'r_height'] %}
+														<div class="row">
+															<div class="col-md-12">
+																<div class="col-md-5">{{ constant.name }}({{ constant.symbol }})</div>
+																<div class="col-md-6">
+																	<div class="input-group">
+																		<input type="text" {% if constant.default_value !='' %} value="{{ constant.default_value }}" class="form-control default-color"
+																		 {% else %} class="form-control" {% endif %} name="{{ constant.name_eng }}" {% if constant.disable=='T'
+																		 %} readonly="true" {% endif %}>
+																		<span class="input-group-addon show-unit">{{ constant.unit }}</span>
+																	</div>
+
+																</div>
+																{% if constant.calculate != "" %}
+																<div class="col-md-1">
+																	<i class="fa fa-question-circle-o" title="备注：" data-container="body" data-toggle="popover" data-placement="right" data-content="{{ constant.calculate }}"></i>
+																</div>
+																{% endif %}
+
+															</div>
+														</div>
+														<br> {% endif %} {% endfor %}
+													</div>
+												</div>
+
+												<div class="panel">
+													<div class="first-title">
+														<i class="fa fa-map-marker" aria-hidden="true"></i>
+														<span class="margin-left15">来气量计算</span>
+													</div>
+													<div class="panel-body">
+														{% for constant in constants %} {% if constant.name_eng in ['g_grey_gas', 'g_air_transport_ash_system'] %}
+														<div class="row">
+															<div class="col-md-12">
+																<div class="col-md-5">{{ constant.name }}({{ constant.symbol }})</div>
+																<div class="col-md-6">
+																	<div class="input-group">
+																		<input type="text" {% if constant.default_value !='' %} value="{{ constant.default_value }}" class="form-control default-color"
+																		 {% else %} class="form-control" {% endif %} name="{{ constant.name_eng }}" {% if constant.disable=='T' %}
+																		 readonly="true" {% endif %}>
+																		<span class="input-group-addon show-unit">{{ constant.unit }}</span>
+																	</div>
+	
+																</div>
+																{% if constant.calculate != "" %}
+																<div class="col-md-1">
+																	<i class="fa fa-question-circle-o" title="备注：" data-container="body" data-toggle="popover" data-placement="right" data-content="{{ constant.calculate }}"></i>
+																</div>
+																{% endif %}
+	
+															</div>
+														</div>
+														<br> {% endif %} {% endfor %}
+													</div>
+												</div>
+											</div>
+
+
+										<!-- <div class="col-md-12 r-5 hide">
+											<div class="panel">
+
+												<div class="first-title">
+													<i class="fa fa-map-marker" aria-hidden="true"></i>
+													<span class="margin-left15">参考信息</span>
+												</div>
+												<div class="panel-body">
+													<div class="row">
+														<div class="col-md-12">
+															<i class="fa fa-asterisk asterisk-style" aria-hidden="true"></i>
+															输入框红色数字为默认值，点击【保存】后默认值才会被保存到数据库。</br>
+															</br>
+															<img class="img-responsive center-block expand-img" src="{{ url_for('static', filename='img/CoalCHP/removeAshSlag.png') }}"
+															/>
+
+														</div>
+													</div>
+												</div>
+											</div>
+										</div> -->
+
+
+										<!-- 输灰系统耗气量计算-罗兹风机 -->
+										<!-- <div class="col-md-12 r-3 hide">
+											
+										</div> -->
+
+										<!-- 除渣系统计算-机械除渣 -->
+										<div class="col-md-12 r-4 hide">
+											<div class="panel margin-right30">
+												<div class="first-title">
+													<i class="fa fa-map-marker" aria-hidden="true"></i>
+													<span class="margin-left15"> 除渣系统计算-机械除渣</span>
+												</div>
+												<div class="panel-body">
+													{% for constant in constants %} {% if constant.name_eng in ['s_slag_amount', 's_output_cold_single_stage', 's_cold_single_stage_count',
+													's_slag_removal_system', 's_high_temperature_belt_conveyor', 's_cold_slag_accumulation_density', 's_slag_accumulation_coefficient',
+													's_sludge_time', 's_slag_storage_volume_effective', 's_dia', 's_height'] %}
+													<div class="row">
+														<div class="col-md-12">
+															<div class="col-md-5">{{ constant.name }}({{ constant.symbol }})</div>
+															<div class="col-md-6">
+																<div class="input-group">
+																	<input type="text" {% if constant.default_value !='' %} value="{{ constant.default_value }}" class="form-control default-color"
+																	 {% else %} class="form-control" {% endif %} name="{{ constant.name_eng }}" {% if constant.disable=='T' %}
+																	 readonly="true" {% endif %}>
+																	<span class="input-group-addon show-unit">{{ constant.unit }}</span>
+																</div>
+
+															</div>
+															{% if constant.calculate != "" %}
+															<div class="col-md-1">
+																<i class="fa fa-question-circle-o" title="备注：" data-container="body" data-toggle="popover" data-placement="right" data-content="{{ constant.calculate }}"></i>
+															</div>
+															{% endif %}
+
+														</div>
+													</div>
+													<br> {% endif %} {% endfor %}
+												</div>
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
+			</form>
+			<!-- END MAIN CONTENT -->
+			</div>
+			<!-- END MAIN -->
+			{% endblock %} {% endblock %}
