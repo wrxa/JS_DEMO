@@ -1,0 +1,482 @@
+{% extends "base.html" %}
+<!doctype html> {% block content %} {% block page_content %}
+<script src="{{ url_for('static', filename='js/coalCHP/coalSmokeAirSystem.js') }}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/questionnaire.css') }}">
+<style>
+		.panel {
+			background-color: rgba(255, 255, 255, 0.3);
+			margin: 10px 0px 10px 15px;
+		}
+		.cd-breadcrumb.triangle li.ableClick > * {
+    color: #ffffff;
+    background-color: #337ab7!important;
+    border-color: #337ab7 !important;
+}
+	</style>
+<!-- MAIN -->
+<div class="main">
+	<!-- MAIN CONTENT -->
+	<div class="main-content">
+		<div class="container-fluid">
+			<!-- <div class="page-title">燃煤热电联产-烟风系统</div> -->
+			</br>
+			</br>
+			</br>
+			<div class="row" style="margin-top: -23px;margin-bottom: -28px;">
+
+				<div class="col-md-12 breadcrumb-fix show">
+					<div id="breadcrumbDiv" class="col-md-10 breadcrumb-div">
+						<ol class="cd-breadcrumb triangle">
+							<li>
+								<a class="pre" href="#" data-page="10">上一页</a>
+							</li>
+							<li class="hide">
+								<a id="coalchp1"  onclick="return false;" href="{{ url_for('coalviews.coalQuestionnaire', id=session.planId) }}">需求调查表</a>
+							</li>
+							<li class="hide">
+								<a id="coalchp2" onclick="return false;" href="{{ url_for('coalviews.coalFurnace') }}">锅炉计算</a>
+							</li>
+							<li class="hide">
+								<a id="coalchp3" onclick="return false;" href="{{ url_for('coalviews.coalSteamTurbine') }}">汽轮机计算</a>
+							</li>
+							<li class="hide">
+								<a id="coalchp4" onclick="return false;" href="{{ url_for('coalviews.coalBoilerAuxiliaries') }}">锅炉辅机系统</a>
+							</li>
+							<li class="hide">
+								<a id="coalchp5" onclick="return false;" href="{{ url_for('coalviews.coalTurbineAuxiliary') }}">汽机辅机系统</a>
+							</li>
+							<li>
+								<a id="coalchp6" onclick="return false;" href="{{ url_for('coalviews.coalHandingSystem') }}">输煤系统</a>
+							</li>
+							<li class="ableClick">
+								<a id="coalchp7" href="#">烟风系统</a>
+							</li>
+							<li>
+								<a id="coalchp8" onclick="return false;" href="{{ url_for('coalviews.coalDesulfurization') }}">脱硫脱硝系统</a>
+							</li>
+							<li>
+								<a id="coalchp9" onclick="return false;" href="{{ url_for('coalviews.coalChimney') }}">烟囱</a>
+							</li>
+							<li>
+								<a id="coalchp10" onclick="return false;" href="{{ url_for('coalviews.coalRemovalAshSlag') }}">除灰除渣系统</a>
+							</li>
+							<li class="hide">
+								<a id="coalchp11" onclick="return false;" href="{{ url_for('coalviews.coalChemicalWater') }}">化学水系统</a>
+							</li>
+							<li class="hide">
+								<a id="coalchp12"  onclick="return false;" href="{{ url_for('coalviews.coalCirculatingWater') }}">循环水系统</a>
+							</li>
+							<li class="hide">
+								<a id="coalchp13" onclick="return false;" href="{{ url_for('coalviews.coalOfficialProcess') }}">公用工程</a>
+							</li>
+							<li class="hide">
+								<a id="coalchp14"  onclick="return false;" href="{{ url_for('coalviews.coalHeatSupply') }}">采暖供热</a>
+							</li>
+							<li class="hide">
+								<a id="coalchp15" onclick="return false;" href="{{ url_for('coalviews.coalEconomicIndicators') }}">主要技术经济指标</a>
+							</li>
+							<li>
+								<a id="coalchp16" onclick="return false;" href="{{ url_for('coalviews.outputImage') }}">出图</a>
+							</li>
+							<li>
+								<a id="coalchp17" href="{{ url_for('coalviews.coalEquipmentList') }}">设备参数</a>
+							</li>
+							<li class="current">
+								<a class="next" href="#">下一页</a>
+							</li>
+						</ol>
+					</div>
+					<div class="col-md-1 breadcrumb-submit">
+						<button type="button" id="submitData" class="btn btn-success">
+							<i class="fa fa-check-circle"></i> 保 存 </button>
+					</div>
+				</div>
+				</br>
+				</br>
+				</br>
+				</br>
+
+			</div>
+			<form id="coalSmokeAirSystemForm">
+				<div class="row full-width-style">
+					<div class="st-content">
+
+						<div class="st-content-inner">
+							<div class="col-md-12">
+								<div class="col-md-3" style="position:fixed;height:100%">
+									<nav class="st-menu">
+										<h2 class="icon icon-lab">烟风系统</h2>
+										<ul>
+											<li>
+												<a class="left-select left-hover" href="#" id="s-1">海拔大气压换算</a>
+											</li>
+											<li>
+												<a class="left-select" href="#" id="s-2">标况--工况</a>
+											</li>
+											<li>
+												<a class="left-select" href="#" id="s-3">一次风机计算</a>
+											</li>
+											<li>
+												<a class="left-select" href="#" id="s-4">二次风机计算</a>
+											</li>
+											<li>
+												<a class="left-select" href="#" id="s-5">引风机计算</a>
+											</li>
+											<li>
+												<a class="left-select" href="#" id="s-6">返料风机计算</a>
+											</li>
+										</ul>
+									</nav>
+
+								</div>
+								<div class="col-md-9" style="left:19%;">
+									<div class="module-content">
+										<div class="main clearfix">
+											<div class="col-md-12 s-2 hide">
+												<!-- INPUT GROUPS -->
+												<div class="panel">
+													<div class="first-title">
+														<i class="fa fa-map-marker" aria-hidden="true"></i>
+														<span class="margin-left15">标况--工况</span>
+													</div>
+													<div class="panel-body">
+														{% for constant in constants %} {% if constant.name_eng in ['p_the_case_temperature', 'p_standard_of_pressure', 'p_standard_of_flow',
+														'p_temperature_case', 'p_local_atmosphere', 'p_operational_point_flow'] %}
+														<div class="row">
+															<div class="col-md-12">
+																<div class="col-md-2">{{ constant.name }}({{ constant.symbol }})</div>
+																<div class="col-md-3">
+																	<div class="input-group">
+																		<span class="input-group-addon show-success">一</span>
+																		<input type="text" name="{{ constant.name_eng }}_f" {% if constant.disable=='T' %} readonly="true" {% endif %} {% if constant.default_value
+																		 !='' %} value="{{ constant.default_value }}" class="form-control default-color" {% else %} class="form-control"
+																		 {% endif %}>
+																		<span class="input-group-addon show-unit">{{ constant.unit }}</span>
+																	</div>
+
+																</div>
+																<div class="col-md-3">
+																	<div class="input-group">
+																		<span class="input-group-addon show-success">二</span>
+																		<input type="text" name="{{ constant.name_eng }}_s" {% if constant.disable=='T' %} readonly="true" {% endif %} {% if constant.default_value
+																		 !='' %} value="{{ constant.default_value }}" class="form-control default-color" {% else %} class="form-control"
+																		 {% endif %}>
+																		<span class="input-group-addon show-unit">{{ constant.unit }}</span>
+																	</div>
+
+																</div>
+
+																{% if constant.name_eng == 'p_temperature_case' %}
+
+																<div class="col-md-3">
+																	<div class="input-group">
+																		<span class="input-group-addon show-success">烟</span>
+																		<input type="text" name="{{ constant.name_eng }}_t" {% if constant.disable=='T' %} readonly="true" {% endif %} {% if constant.default_value
+																		 !='' %} value="160" class="form-control default-color" {% else %} class="form-control"
+																		 {% endif %}>
+																		<span class="input-group-addon show-unit">{{ constant.unit }}</span>
+																	</div>
+
+																</div>
+																{% else %}
+																<div class="col-md-3">
+																	<div class="input-group">
+																		<span class="input-group-addon show-success">烟</span>
+																		<input type="text" name="{{ constant.name_eng }}_t" {% if constant.disable=='T' %} readonly="true" {% endif %} {% if constant.default_value
+																		 !='' %} value="{{ constant.default_value }}" class="form-control default-color" {% else %} class="form-control"
+																		 {% endif %}>
+																		<span class="input-group-addon show-unit">{{ constant.unit }}</span>
+																	</div>
+
+																</div>
+																{% endif %}
+
+
+																{% if constant.calculate != "" %}
+																<div class="col-md-1">
+																	<i class="fa fa-question-circle-o" title="备注：" data-container="body" data-toggle="popover" data-placement="right" data-content="{{ constant.calculate }}"></i>
+																</div>
+																{% endif %}
+
+															</div>
+														</div>
+														<br> {% endif %} {% endfor %}
+													</div>
+												</div>
+											</div>
+											<!-- 一次风机计算 -->
+											<div class="col-md-12 s-3 hide">
+												<div class="panel">
+													<div class="first-title">
+														<i class="fa fa-map-marker" aria-hidden="true"></i>
+														<span class="margin-left15">一次风机计算</span>
+													</div>
+													<div class="panel-body">
+														{% for constant in constants %} {% if constant.name_eng in ['f_air_temperature', 'f_boiler_body_resistance', 'f_duct_resistance',
+														'f_local_atmosphere', 'f_nameplate_medium_temperature', 'f_fan_total_pressure', 'f_fan_select_total_pressure',
+														'f_fan_selection_flow', 'f_fan_power', 'f_electric_motor_power', 'f_fan_shaft_power', 'f_fan_security_volumn',
+														'f_motor_power', 'f_lectotype'] %}
+														<div class="row">
+															<div class="col-md-12">
+																<div class="col-md-5">{{ constant.name }}({{ constant.symbol }})</div>
+																<div class="col-md-6">
+																	<div class="input-group">
+																		<input type="text" name="{{ constant.name_eng }}" {% if constant.disable=='T' %} readonly="true" {% endif %} {% if constant.default_value
+																		 !='' %} value="{{ constant.default_value }}" class="form-control default-color" {% else %} class="form-control"
+																		 {% endif %}>
+																		<span class="input-group-addon show-unit">{{ constant.unit }}</span>
+																	</div>
+
+																</div>
+																{% if constant.calculate != "" %}
+																<div class="col-md-1">
+																	<i class="fa fa-question-circle-o" title="备注：" data-container="body" data-toggle="popover" data-placement="right" data-content="{{ constant.calculate }}"></i>
+																</div>
+																{% endif %}
+
+															</div>
+														</div>
+														<br> {% endif %} {% if constant.name_eng in ['f_smoke_flow_rate_condition'] %}
+														<div class="row">
+															<div class="col-md-12">
+																<div class="col-md-3">
+																	<div class="input-group">
+																		<input type="text" placeholder="风比" name="f_wind_Proportion" {% if constant.default_value !='' %} value="{{ constant.default_value }}"
+																		 class="form-control default-color" {% else %} class="form-control" {% endif %}>
+																	</div>
+
+																</div>
+																<div class="col-md-3">
+																	<div class="input-group">
+																		<input type="text" placeholder="台数" name="f_count" {% if constant.default_value !='' %} value="{{ constant.default_value }}"
+																		 class="form-control default-color" {% else %} class="form-control" {% endif %}>
+																	</div>
+
+																</div>
+																<div class="col-md-5">
+																	<div class="input-group">
+																		<input placeholder="{{ constant.name }}({{ constant.symbol }})" type="text" name="{{ constant.name_eng }}" {% if constant.disable=='T'
+																		 %} readonly="true" {% endif %} {% if constant.default_value !='' %} value="{{ constant.default_value }}"
+																		 class="form-control default-color" {% else %} class="form-control" {% endif %}>
+																		<span class="input-group-addon show-unit">{{ constant.unit }}</span>
+																	</div>
+
+																</div>
+																{% if constant.calculate != "" %}
+																<div class="col-md-1">
+																	<i class="fa fa-question-circle-o" title="备注：" data-container="body" data-toggle="popover" data-placement="right" data-content="{{ constant.calculate }}"></i>
+																</div>
+																{% endif %}
+															</div>
+														</div>
+														<br> {% endif %} {% endfor %}
+													</div>
+												</div>
+											</div>
+
+											<!-- 引风机计算 -->
+											<div class="col-md-12 s-5 hide">
+												<div class="panel">
+													<div class="first-title">
+														<i class="fa fa-map-marker" aria-hidden="true"></i>
+														<span class="margin-left15"> 引风机计算</span>
+													</div>
+													<div class="panel-body">
+														{% for constant in constants %} {% if constant.name_eng in ['i_air_temperature', 'i_boiler_body_resistance', 'i_denitration',
+														'i_duster', 'i_duct_resistance', 'i_resistance_desulfurization_fan', 'i_local_atmosphere', 'i_nameplate_medium_temperature',
+														'i_fan_total_pressure', 'i_fan_select_total_pressure', 'i_fan_selection_flow', 'i_fan_power', 'i_electric_motor_power',
+														'i_fan_shaft_power', 'i_fan_security_volumn', 'i_motor_power', 'i_lectotype'] %}
+														<div class="row">
+															<div class="col-md-12">
+																<div class="col-md-5">{{ constant.name }}({{ constant.symbol }})</div>
+																<div class="col-md-6">
+																	<div class="input-group">
+																		<input type="text" name="{{ constant.name_eng }}" {% if constant.disable=='T' %} readonly="true" {% endif %} {% if constant.default_value
+																		 !='' %} value="{{ constant.default_value }}" class="form-control default-color" {% else %} class="form-control"
+																		 {% endif %}>
+																		<span class="input-group-addon show-unit">{{ constant.unit }}</span>
+																	</div>
+
+																</div>
+																{% if constant.calculate != "" %}
+																<div class="col-md-1">
+																	<i class="fa fa-question-circle-o" title="备注：" data-container="body" data-toggle="popover" data-placement="right" data-content="{{ constant.calculate }}"></i>
+																</div>
+																{% endif %}
+
+															</div>
+														</div>
+														<br> {% endif %} {% if constant.name_eng in ['i_smoke_flow_rate_condition'] %}
+														<div class="row">
+															<div class="col-md-12">
+																<div class="col-md-3">{{ constant.name }}({{ constant.symbol }})</div>
+																<div class="col-md-3">
+																	<div class="input-group">
+																		<input type="text" placeholder="台数" name="i_count" {% if constant.default_value !='' %} value="{{ constant.default_value }}"
+																		 class="form-control default-color" {% else %} class="form-control" {% endif %}>
+																	</div>
+
+																</div>
+																<div class="col-md-5">
+																	<div class="input-group">
+																		<input type="text" name="{{ constant.name_eng }}" {% if constant.disable=='T' %} readonly="true" {% endif %} {% if constant.default_value
+																		 !='' %} value="{{ constant.default_value }}" class="form-control default-color" {% else %} class="form-control"
+																		 {% endif %}>
+																		<span class="input-group-addon show-unit">{{ constant.unit }}</span>
+																	</div>
+
+																</div>
+																{% if constant.calculate != "" %}
+																<div class="col-md-1">
+																	<i class="fa fa-question-circle-o" title="备注：" data-container="body" data-toggle="popover" data-placement="right" data-content="{{ constant.calculate }}"></i>
+																</div>
+																{% endif %}
+															</div>
+														</div>
+														<br> {% endif %} {% endfor %}
+													</div>
+												</div>
+											</div>
+
+											<!-- 海拔大气压换算 -->
+											<div class="col-md-12 s-1">
+												<div class="panel margin-right30">
+													<div class="first-title">
+														<i class="fa fa-map-marker" aria-hidden="true"></i>
+														<span class="margin-left15"> 海拔大气压换算</span>
+													</div>
+													<div class="panel-body">
+														{% for constant in constants %} {% if constant.name_eng in ['a_altitude', 'a_atmospheric_pressure'] %}
+														<div class="row">
+															<div class="col-md-12">
+																<div class="col-md-5">{{ constant.name }}({{ constant.symbol }})</div>
+																<div class="col-md-6">
+																	<div class="input-group">
+																		<input type="text" class="form-control" name="{{ constant.name_eng }}" {% if constant.disable=='T' %} readonly="true" {%
+																		 endif %}>
+																		<span class="input-group-addon show-unit">{{ constant.unit }}</span>
+																	</div>
+
+																</div>
+																{% if constant.calculate != "" %}
+																<div class="col-md-1">
+																	<i class="fa fa-question-circle-o" title="备注：" data-container="body" data-toggle="popover" data-placement="right" data-content="{{ constant.calculate }}"></i>
+																</div>
+																{% endif %}
+
+															</div>
+														</div>
+														<br> {% endif %}{% endfor %}
+													</div>
+												</div>
+											</div>
+											<!-- 二次风机计算 -->
+											<div class="col-md-12 s-4 hide">
+												<div class="panel margin-right30">
+													<div class="first-title">
+														<i class="fa fa-map-marker" aria-hidden="true"></i>
+														<span class="margin-left15"> 二次风机计算</span>
+													</div>
+													<div class="panel-body">
+														{% for constant in constants %} {% if constant.name_eng in ['s_air_temperature', 's_boiler_body_resistance', 's_duct_resistance',
+														's_local_atmosphere', 's_nameplate_medium_temperature', 's_fan_total_pressure', 's_fan_select_total_pressure',
+														's_fan_selection_flow', 's_fan_power', 's_electric_motor_power', 's_fan_shaft_power', 's_fan_security_volumn',
+														's_motor_power', 's_lectotype'] %}
+														<div class="row">
+															<div class="col-md-12">
+																<div class="col-md-5">{{ constant.name }}({{ constant.symbol }})</div>
+																<div class="col-md-6">
+																	<div class="input-group">
+																		<input type="text" name="{{ constant.name_eng }}" {% if constant.disable=='T' %} readonly="true" {% endif %} {% if constant.default_value
+																		 !='' %} value="{{ constant.default_value }}" class="form-control default-color" {% else %} class="form-control"
+																		 {% endif %}>
+																		<span class="input-group-addon show-unit">{{ constant.unit }}</span>
+																	</div>
+
+																</div>
+																{% if constant.calculate != "" %}
+																<div class="col-md-1">
+																	<i class="fa fa-question-circle-o" title="备注：" data-container="body" data-toggle="popover" data-placement="right" data-content="{{ constant.calculate }}"></i>
+																</div>
+																{% endif %}
+
+															</div>
+														</div>
+														<br> {% endif %} {% if constant.name_eng in ['s_smoke_flow_rate_condition'] %}
+														<div class="row">
+															<div class="col-md-12">
+
+																<div class="col-md-3">{{ constant.name }}({{ constant.symbol }})</div>
+																<div class="col-md-3">
+																	<div class="input-group">
+																		<input type="text" placeholder="台数" name="s_count" {% if constant.default_value !='' %} value="{{ constant.default_value }}"
+																		 class="form-control default-color" {% else %} class="form-control" {% endif %}>
+																	</div>
+
+																</div>
+																<div class="col-md-5">
+																	<div class="input-group">
+																		<input type="text" name="{{ constant.name_eng }}" {% if constant.disable=='T' %} readonly="true" {% endif %} {% if constant.default_value
+																		 !='' %} value="{{ constant.default_value }}" class="form-control default-color" {% else %} class="form-control"
+																		 {% endif %}>
+																		<span class="input-group-addon show-unit">{{ constant.unit }}</span>
+																	</div>
+
+																</div>
+																{% if constant.calculate != "" %}
+																<div class="col-md-1">
+																	<i class="fa fa-question-circle-o" title="备注：" data-container="body" data-toggle="popover" data-placement="right" data-content="{{ constant.calculate }}"></i>
+																</div>
+																{% endif %}
+															</div>
+														</div>
+														<br> {% endif %} {% endfor %}
+													</div>
+												</div>
+											</div>
+
+											<!-- 返料风机计算 -->
+											<div class="col-md-12 s-6 hide">
+												<div class="panel margin-right30">
+													<div class="first-title">
+														<i class="fa fa-map-marker" aria-hidden="true"></i>
+														<span class="margin-left15"> 返料风机计算</span>
+													</div>
+													<div class="panel-body">
+														{% for constant in constants %} {% if constant.name_eng in ['r_air_temperature', 'r_boiler_body_resistance', 'r_duct_resistance',
+														'r_local_atmosphere', 'r_smoke_flow_rate_condition', 'r_nameplate_medium_temperature', 'r_fan_total_pressure', 'r_fan_select_total_pressure',
+														'r_fan_selection_flow', 'r_fan_power', 'r_electric_motor_power', 'r_fan_shaft_power', 'r_fan_security_volumn',
+														'r_motor_power', 'r_lectotype'] %}
+														<div class="row">
+															<div class="col-md-12">
+																<div class="col-md-5">{{ constant.name }}({{ constant.symbol }})</div>
+																<div class="col-md-6">
+																	<div class="input-group">
+																		<input type="text" name="{{ constant.name_eng }}" {% if constant.disable=='T' %} readonly="true" {% endif %} {% if constant.default_value
+																		 !='' %} value="{{ constant.default_value }}" class="form-control default-color" {% else %} class="form-control"
+																		 {% endif %}>
+																		<span class="input-group-addon show-unit">{{ constant.unit }}</span>
+																	</div>
+
+																</div>
+																{% if constant.calculate != "" %}
+																<div class="col-md-1">
+																	<i class="fa fa-question-circle-o" title="备注：" data-container="body" data-toggle="popover" data-placement="right" data-content="{{ constant.calculate }}"></i>
+																</div>
+																{% endif %}
+
+															</div>
+														</div>
+														<br> {% endif %} {% endfor %}
+													</div>
+												</div>
+
+											</div>
+										</div>
+									</div>
+								</div>
+			</form>
+			<!-- END MAIN CONTENT -->
+			</div>
+			<!-- END MAIN -->
+			{% endblock %} {% endblock %}

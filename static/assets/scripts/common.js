@@ -594,14 +594,8 @@ function changeModule(listModule, current) {
     if($("." + current).hasClass('hide')) {
         $("." + current).removeClass('hide');
     }
-
-    // 左侧
-    if(!$("#" + current).hasClass('left-hover')) {
-        $("#" + current).addClass('left-hover');
-    }
-
     // 除了当前选中的其它模块list
-    var newList = cutCssName(listModule, current);
+    newList = cutCssName(listModule, current);
     for (var i = 0; i < newList.length; i++) {
         // 右侧
         if(!$("." + newList[i]).hasClass('hide')) {
@@ -611,15 +605,17 @@ function changeModule(listModule, current) {
         if($("#" + newList[i]).hasClass('left-hover')) {
             $("#" + newList[i]).removeClass('left-hover');
         }
+    }
 
-        if($("#" + newList[i]).hasClass('left-select')) {
-            $("#" + newList[i]).removeClass('left-select');
-            $("#" + newList[i]).addClass('left-select');
-        }     
+    // 左侧
+    if(!$("#" + current).hasClass('left-hover')) {
+        $("#" + current).addClass('left-hover');
     }
 
     // 切换菜单时关闭打开的提示框
     $("[data-toggle='popover']").popover('hide');
+
+
 }
 
 function isNumber(val){
