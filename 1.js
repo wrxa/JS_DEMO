@@ -2,11 +2,11 @@ function doClick(){
     //alert('Hello, world');
     name = $('#button1')[0].name;
     alert(name);
-    top:
+    top:  
     for (var i = 0; i < 3; i++){
         for (var j = 0; j < 3; j++){
             if (i === 1 && j === 1){
-                break top;   
+                break top;
             } 
             console.log('i=' + i + ', j=' + j);
         }
@@ -160,4 +160,41 @@ function changeStyle(){
         'style',
         'display:inline-block;border-style:double; color:red;'
       );
+}
+
+
+
+function submitAjax(){
+    //console.log('start');
+    //1.创建AJAX对象
+    var ajax = new XMLHttpRequest();
+    
+    //4.给AJAX设置事件(这里最多感知4[1-4]个状态)
+    ajax.onreadystatechange = function(){
+        //5.获取响应
+        //responseText		以字符串的形式接收服务器返回的信息
+        //console.log(ajax.readyState);
+        if(ajax.readyState == 4 && ajax.status == 200){
+            var msg = ajax.responseText;
+            console.log(msg);
+            //alert(msg);
+            var divtag = document.getElementById('result');
+            divtag.innerHTML = msg;
+        }else{
+            alert("error");
+        }
+    }
+    
+    //2.创建http请求,并设置请求地址
+    ajax.open('post','response.php');
+    //post方式传递数据是模仿form表单传递给服务器的,要设置header头协议
+    ajax.setRequestHeader("content-type","application/x-www-form-urlencoded");
+    
+    //3.发送请求(get--null    post--数据)
+    var username = document.getElementsByTagName('input')[0].value;
+    var email = document.getElementsByTagName('input')[1].value;
+    username = encodeURIComponent(username);	//对输入的特殊符号(&,=等)进行编码
+    email = encodeURIComponent(email);
+    var info = 'username='+username+'&email='+email;	//将请求信息组成请求字符串
+    ajax.send(info);
 }
