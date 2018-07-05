@@ -302,7 +302,7 @@
 														<h4>注意最后一行代码把xiaoming的原型指向了对象Person，看上去xiaoming仿佛是从Person继承下来的,
 														JavaScript的原型链和Java的Class区别就在，它没有“Class”的概念，所有对象都是实例，所谓继承关系不过是把一个对象的原型指向另一个对象而已。
 														<br><br><b>请注意，上述代码仅用于演示目的。在编写JavaScript代码时，不要直接用obj.__proto__去改变一个对象的原型，并且，低版本的IE也无法使用__proto__。<br>
-														通常使用Object.create()生成实例对象：</b>
+														通常使用Object.create或new生成实例对象：</b>
 														</h4>
 														<xmp style="color:darkviolet; margin-left: -400px;">
 															var xiaoming2 = Object.create(Person);
@@ -333,7 +333,32 @@
 										</div>	
 										
 										<div class="col-md-12 q-5 hide">
+											<div class="panel">
+												<div class="first-title"><i class="fa fa-pie-chart" aria-hidden="true"></i><span class="margin-left15">DOM</span></div>												
+												<div class="panel-body">
+													<h4>
+														●DOM 是 JavaScript 操作网页的接口，全称为“文档对象模型”（Document Object Model）。它的作用是将网页转为一个 JavaScript 对象，从而可以用脚本进行各种操作
+														<br>
+														●DOM 的最小组成单位叫做节点（node）。文档的树形结构（DOM 树），就是由各种不同类型的节点组成。每个节点可以看作是文档树的一片叶子。
+														<br>
+														<br>
+														●节点的类型有七种。
+													</h4>
+													<xmp style="color:darkviolet; margin-left: -400px;">
+														●Document：整个文档树的顶层节点
+														●DocumentType：doctype标签（比如<!DOCTYPE html>）
+														●Element：网页的各种HTML标签（比如<body>、<a>等）
+														●Attribute：网页元素的属性（比如class="right"）
+														●Text：标签之间或标签包含的文本
+														●Comment：注释
+														●DocumentFragment：文档的片段
+													</xmp>
 
+													<label id="label1" class="label_class" style="border-style: dashed">
+														<h3>&nbsp;&nbsp;这是一个Label&nbsp;&nbsp;  </h3>
+													</label>
+												</div>
+											</div>
 										</div>
 									</div>	
 								</div>

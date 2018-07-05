@@ -28,18 +28,76 @@ var Person = {
     }
 };
 
+var Person2 = function(){
+    //有没有this很重要
+    this.name ='Robot';
+    height = 1;
+    this.run = function () {
+        alert(this.name + ' is running...' + 'age is ' + this.age);
+    }
+};
+
 var xiaoming = {
     name: '小明'
 };
-
 xiaoming.__proto__ = Person;
 
 var xiaoming2 = Object.create(Person);
 
+var xiaoming3 = new Person2();
+xiaoming3.age = 100;
+
 function doClick4(){
-    xiaoming2.name = "大黑";
-    xiaoming2.run();
+    xiaoming3.name = "HELLO";
+    xiaoming3.run();
+    //alert(xiaoming3.name);
 }
+
+/**
+ * CLICK5
+ */
+'use strict';
+function Cat(name) {
+    this.name = name;
+}
+Cat.prototype.say = function(){
+    return 'Hello, ' + this.name + '!';
+}
+
+
+// var Cat = function(name){
+//     this.name = name;
+//     this.say = function(){
+//         return 'Hello, ' + this.name + '!';
+//     }
+// }
+
+function doClick5(){
+    var kitty = new Cat('Kitty');
+    var doraemon = new Cat('哆啦A梦');
+    if (kitty && kitty.name === 'Kitty' && kitty.say && typeof kitty.say === 'function' && kitty.say() === 'Hello, Kitty!' && kitty.say === doraemon.say) {
+        console.log('测试通过!');
+    } else {
+        console.log('测试失败!');
+    }
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+var A = {
+    name: '张三',
+    describe: function () {
+      alert('姓名：'+ this.name);
+    }
+  };
+  
+  var name = '李四';
+  var f = A.describe;
+  var f2 = Person.run;
+  function doClick6(){
+      f2();
+      //xiaoming2.run();
+  }
+
 
 function doClick3(){
     // 选择<p>JavaScript</p>:
@@ -61,4 +119,45 @@ function doClick3(){
     } else {
         alert('测试通过!');
     }
+}
+
+function getLabelInfo(){
+    var buttons = document.getElementsByName('button Name');
+
+    buttons.forEach(function(button, i, list){
+        button.onclick = function(){
+            alert("hello");
+        };  
+    });
+
+
+    for(i in buttons) {  
+        // buttons[i].onclick = function(){
+        //     alert("hello");
+        // };  
+    };  
+
+    for (var i = 0; i < buttons.length; i++) {
+        // buttons[i].onclick = function(){
+        //     alert("hello");
+        // };
+
+        //buttons[i].removeEventListener('click',);
+        // buttons[i].addEventListener('click',function(){
+        //     alert(1);
+        // });
+
+        //IE
+        // buttons[i].attachEvent('click',function(){
+        // alert(2);
+        // });
+      }
+}
+
+function changeStyle(){
+    var label = document.getElementById('label1');
+    label.setAttribute(
+        'style',
+        'display:inline-block;border-style:double; color:red;'
+      );
 }
