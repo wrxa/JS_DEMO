@@ -65,20 +65,23 @@ Cat.prototype.say = function(){
 }
 
 
-// var Cat = function(name){
-//     this.name = name;
-//     this.say = function(){
-//         return 'Hello, ' + this.name + '!';
-//     }
-// }
+var Cat2 = function(name){
+    this.name = name;
+    this.say = function(){
+        return 'Hello, ' + this.name + '!';
+    }
+}
+Cat2.prototype.say = function(){
+    return 'Hello1, ' + this.name + '!';
+}
 
 function doClick5(){
-    var kitty = new Cat('Kitty');
-    var doraemon = new Cat('哆啦A梦');
+    var kitty = new Cat2('Kitty');
+    var doraemon = new Cat2('哆啦A梦');
     if (kitty && kitty.name === 'Kitty' && kitty.say && typeof kitty.say === 'function' && kitty.say() === 'Hello, Kitty!' && kitty.say === doraemon.say) {
-        console.log('测试通过!');
+        alert('测试通过!');
     } else {
-        console.log('测试失败!');
+        alert('测试失败!');
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -122,7 +125,7 @@ function doClick3(){
 }
 
 function getLabelInfo(){
-    var buttons = document.getElementsByName('button Name');
+    var buttons = document.getElementsByName('buttonName');
 
     buttons.forEach(function(button, i, list){
         button.onclick = function(){
@@ -162,39 +165,140 @@ function changeStyle(){
       );
 }
 
+function doFormSerialize(){
+    // 表单序列化，IE9+
+    var form = document.getElementById('MyForm');
+    // 表单数据
+    var arrFormData = [], objFormData = {};
 
+    [].slice.call(form.elements).forEach(function(ele) {
+        // 元素类型和状态
+        var type = ele.type, disabled = ele.disabled;
 
-function submitAjax(){
+        // 元素的键值
+        var name = ele.name, value = encodeURIComponent(ele.value || 'on');
+
+        // name参数必须，元素非disabled态，一些类型忽略
+        if (!name || disabled || !type || (/^reset|submit|image$/i.test(type)) || (/^checkbox|button|radio$/i.test(type) && !ele.checked)) {
+            return;
+        }
+
+        type = type.toLowerCase();
+
+        if (type !== 'select-multiple') {
+            if (objFormData[name]) {
+                objFormData[name].push(value);
+            } else {
+                objFormData[name] = [value];
+            }
+        } else {
+            [].slice.call(ele.querySelectorAll('option')).forEach(function(option) {
+                var optionValue = encodeURIComponent(option.value || 'on');
+                if (option.selected) {
+                    if (objFormData[name]) {
+                        objFormData[name].push(optionValue);
+                    } else {
+                        objFormData[name] = [optionValue];
+                    }
+                }
+            });
+        }                
+    });
+
+    for (var key in objFormData) {
+        arrFormData.push(key + '=' + objFormData[key].join());
+    }
+
+    return arrFormData.join('&');    
+}
+function submitAjaxByJQuery(){
+    var divtag = document.getElementById('result');
+    var data = $('#MyForm').serialize();
+    $.ajax({
+        cache: true,
+        type: "POST",
+        url: 'http://127.0.0.1:5000/testAjax',
+        data: data,
+        //dataType: 'jsonp',
+        async: true,
+        error: function (request) {
+            divtag.innerHTML = request.status;
+        },
+        success: function (request) {
+            divtag.innerHTML = "YES";
+        }
+    });
+}
+
+function submitAjaxByJS(){
+    //HTMLFormElement.prototype.serialize = doFormSerialize();
     //console.log('start');
     //1.创建AJAX对象
     var ajax = new XMLHttpRequest();
+    var divtag = document.getElementById('result');
+    var data = doFormSerialize();
     
     //4.给AJAX设置事件(这里最多感知4[1-4]个状态)
     ajax.onreadystatechange = function(){
         //5.获取响应
         //responseText		以字符串的形式接收服务器返回的信息
         //console.log(ajax.readyState);
-        if(ajax.readyState == 4 && ajax.status == 200){
-            var msg = ajax.responseText;
-            console.log(msg);
-            //alert(msg);
-            var divtag = document.getElementById('result');
-            divtag.innerHTML = msg;
+        if(ajax.readyState == 4){
+            if(ajax.status == 200){
+                var msg = ajax.responseText;
+                console.log(msg);
+                //alert(msg);
+                divtag.innerHTML = msg;
+            }else{
+                divtag.innerHTML = ajax.status;
+            }
         }else{
-            alert("error");
+            divtag.innerHTML = "HTTP请求中...";
         }
     }
     
     //2.创建http请求,并设置请求地址
-    ajax.open('post','response.php');
+    ajax.open('POST','http://127.0.0.1:5000/testAjax');
     //post方式传递数据是模仿form表单传递给服务器的,要设置header头协议
     ajax.setRequestHeader("content-type","application/x-www-form-urlencoded");
-    
+
+    //ajax.setRequestHeader("Access-Control-Allow-Origin","*");
+    //ajax.setRequestHeader("dataType","jsonp");
+
     //3.发送请求(get--null    post--数据)
-    var username = document.getElementsByTagName('input')[0].value;
-    var email = document.getElementsByTagName('input')[1].value;
-    username = encodeURIComponent(username);	//对输入的特殊符号(&,=等)进行编码
-    email = encodeURIComponent(email);
-    var info = 'username='+username+'&email='+email;	//将请求信息组成请求字符串
-    ajax.send(info);
+    //var user_eid = document.getElementById('user_eid').value;
+    //var password = document.getElementById('password').value;
+    //user_eid = encodeURIComponent(user_eid);	//对输入的特殊符号(&,=等)进行编码
+    //password = encodeURIComponent(password);
+    //var info = 'user_eid='+user_eid+'&password='+password;	//将请求信息组成请求字符串
+
+    //序列化表单
+    //ajax.send(null);
+    ajax.send(data);
+}
+
+function getWeather(){
+    'use strict'
+    var url = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20%3D%202151330&format=json';
+    // 从远程地址获取JSON:
+    $.getJSON(url, function (data) {
+    // 获取结果:
+        var city = data.query.results.channel.location.city;
+        var forecast = data.query.results.channel.item.forecast;
+        var result = {
+            city: city,
+            forecast: forecast
+        };
+        alert(JSON.stringify(result, null, '  '));
+    });
+}
+
+function deleteChild(){
+    var parent = document.getElementById('test-list');
+    var children = parent.children;
+    for(i in children) {  
+        if(children[i].innerText=='DirectX' || children[i].innerText=='ANSI C' || children[i].innerText=='Swift'){
+            parent.removeChild(children[i])
+        };  
+    }; 
 }

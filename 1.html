@@ -14,8 +14,9 @@
 
 </head>
 <body>
-    <input id="button1" name="button Name" type="button" value="CLICK" onclick="doClick();"/>
-    <input id="button2" name="button Name" type="button" value="CLICK2" onclick="doClick2();"/>
+<form id="MyForm">
+    <input id="button1" name="buttonName" type="button" value="CLICK" onclick="doClick();"/>
+    <input id="button2" name="buttonName" type="button" value="CLICK2" onclick="doClick2();"/>
 
     <div id="test-div">
         <div class="c-red">
@@ -32,13 +33,16 @@
             <p>Haskell</p>
         </div>
 
-        <input id="button3" name="button Name" type="button" value="CLICK3" onclick="doClick3();"/>
+        <input id="button3" name="buttonName" type="button" value="CLICK3" onclick="doClick3();"/>
 
-        <input id="button4" name="button Name" type="button" value="CLICK4" onclick="doClick4();"/>
+        <input id="button4" name="buttonName" type="button" value="CLICK4" onclick="doClick4();"/>
 
-        <input id="button5" name="button Name" type="button" value="CLICK5" onclick="doClick5();"/>
+        <input id="button5" name="buttonName" type="button" value="CLICK5" onclick="doClick5();"/>
 
-        <input id="button6" name="button Name" type="button" value="CLICK6" onclick="doClick6();"/>
+        <input id="button6" name="buttonName" type="button" value="CLICK6" onclick="doClick6();"/>
+
+        <input id="button10" name="buttonName" type="button" value="获取天气" onclick="getWeather();"/>
+
     </div>
     <h3>================================================分割线======================================================</h3>
 
@@ -46,18 +50,32 @@
         <label id="label1" name="label1Name" class="label_class" style="display:inline-block;border-style: double;">
             <h3>&nbsp;&nbsp;这是一个Label&nbsp;&nbsp;  </h3>
         </label>
-        <input id="button7" name="button Name" type="button" value="为其他button绑定事件" onclick="getLabelInfo();"/>
-        <input id="button8" name="button Name" type="button" value="JS绑定Button事件"/>
-        <input id="button9" name="button Name" type="button" value="改变控件的样式" onclick="changeStyle();"/>
+        <input id="button7" name="buttonName" type="button" value="为其他button绑定事件" onclick="getLabelInfo();"/>
+        <input id="button8" name="buttonName" type="button" value="JS绑定Button事件"/>
+        <input id="button9" name="buttonName" type="button" value="改变控件的样式" onclick="changeStyle();"/>
     </div>
+    <br><br><br> 
+
+    <ul id="test-list">
+        <li>JavaScript</li>
+        <li>Swift</li>
+        <li>HTML</li>
+        <li>ANSI C</li>
+        <li>CSS</li>
+        <li>DirectX</li>
+    </ul>
+    <input id="button11" name="buttonName" type="button" value="删除web无关的子节点" onclick="deleteChild();"/>
 
     <h3>================================================分割线======================================================</h3>
     <h2>ajax请求用户名的校验</h2>
-	<p>用户名 : <input type="text" name="username" value="" onblur="f1()" /></p>
-    <p>邮箱 : <input type="text" name="email" value="" /></p>
-    <p><input type="button"  value="提交" onclick="submitAjax()" /> </p>
+	<p>用户名 : <input type="text" id="user_eid" name="user_eid" value="" /></p>
+    <p>密码 : <input type="text" id="password" name="password" value="" /></p>
+    <p><input type="button"  value="提交" onclick="submitAjaxByJS()" /> </p>
+    <p><input type="button"  value="使用JQuery提交" onclick="submitAjaxByJQuery()" /> </p>
     <div id="result" style="color:green;"></div>
+    <br><br><br>
+    <h3>================================================分割线======================================================</h3>
     
-
+</form>
 </body>
 </html>
